@@ -2,30 +2,39 @@
 
 #define J_MAKRO
 
-#include <stdint.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 //singly linked list
 
+typedef struct node {
 
-
-typedef struct {
-
-int data;
-struct Node* next;
+int val;
+struct node* next;
 
 } Node;
 
-typedef struct {
+typedef enum e_bool {
 
-size_t count;
-Node* last;
-
-} NodeMetaData;
+FALSE,
+TRUE
 
 
-Node* add(int val);
-Node* removeLast(Node *ptr);
+} t_bool;
 
+
+
+Node *create_node(const int val);
+Node *find_node(Node *head, const int val);
+Node *remove_last(Node *head);
+Node *merge_sorted_lists(Node *head1, Node *head2);
+t_bool is_cycle(Node *head);
+Node *reverse_list(Node *head);
+Node *get_intersection_node(Node *head);
+Node *nodeSwap(Node *head, int k);
+Node *partition_list(Node *head, int x);
+
+void nesto(void);
 
 
 

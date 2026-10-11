@@ -1,1 +1,4 @@
-proba*
+*.so
+proba
+obj
+test
