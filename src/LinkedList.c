@@ -1,4 +1,4 @@
-#include "strukture.h"
+#include "LinkedList.h"
 
 
 
@@ -146,7 +146,7 @@ Node *start = new_head;
 
 while(head1 && head2){
 
-if(head1->val <= head2.val){
+if(head1->val <= head2->val){
 
 start->next = head1;
 head1 = head1->next;

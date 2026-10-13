@@ -1,33 +1,31 @@
-ifeq ($(HOSTTYPE),)
+ifeq ($(HOSTTYPE), )
 	HOSTTYPE:=$(shell uname -m)_$(shell uname -s)
 endif
 
-TARGET = lib_struct_$(HOSTTYPE).so
-SOFTLINK = lib_struct.so
-OBJS = $(addprefix obj/, linkedList.o doublyLinked.o)
+TARGET = libstruct_$(HOSTTYPE).so
+SOFTLINK = libstruct.so
+OBJ_PATH = obj
+SRC_PATH = src
+INC_PATH = inc
 
-
-
-PATH_SRC = src
-PATH_OBJ = obj
-PATH_INC = inc
 CC = gcc
-FLAGS = -Wall -Wextra -pedantic -fPIC
+FLAGS = -Wall -Wextra -pedantic
+OBJS = $(addprefix obj/, Heap.o LinkedList.o DoublyLinked.o)
 
-.Phony: all clean 
+.PHONY: all clean
 
 all: $(TARGET)
 
 
+
 $(TARGET): $(OBJS)
-	$(CC) -shared -o $@ $(OBJS)  
+	$(CC) $(OBJS) $(FLAGS) -shared -o $(TARGET)
 	@rm -f $(SOFTLINK)
-	ln -s $(TARGET) $(SOFTLINK)
-	@echo make is done 
+	@ln -s $(TARGET) $(SOFTLINK)
+	@echo "Zavrsen .so objekat"
 
-
-$(PATH_OBJ)/%.o: $(PATH_SRC)/%.c
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	@mkdir -p $(dir $@)
-	$(CC) -c $^ $(FLAGS) -o $@ -I $(PATH_INC)
-	@echo turned src file into obj file
+	$(CC) -c -I $(INC_PATH) $<  $(FLAGS) -fPIC -o $@ 
+	@echo "Zavrsen $@ "
 
