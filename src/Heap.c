@@ -254,7 +254,7 @@ else min_heapify(heap->arr, heap->heap_size, idx);
 
 void pqueue_heapify(PQueue *p, size_t idx){
 
-if(!p || idx < 0 || idx > p->capacity) return;
+if(!p || idx > p->capacity) return;
 
 int largest = idx;
 
@@ -325,13 +325,19 @@ idx = parent;
 
 PQueue *pqueue_new(int (*compare_func)(const void *d1, const void *d2), size_t capacity){
 
+PQueue *new_queue = (PQueue *)malloc(sizeof(PQueue));
+
+new_queue->capacity = capacity;
+new_queue->size = 0;
+new_queue->data = malloc(capacity * (sizeof(new_queue->data)));
+
+
+new_queue->compare_func = compare_func;
 
 
 
 
-
-
-
+return new_queue;
 
 
 }

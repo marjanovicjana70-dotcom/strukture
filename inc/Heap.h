@@ -54,18 +54,20 @@ void max_heapify(int *arr, const int size, const int idx);
 void min_heapify(int *arr, const int size, const int idx);
 
 
-void max_heap_build(Heap *heap);
-void min_heap_build(Heap *heap);
+void heap_build(int *arr, int size, heap_property_t property);
+
+
+
 void heapsort(int *arr, int size, heap_property_t property);
 
-
+int heap_extract(Heap *heap, heap_property_t property, uint8_t *success);
 int heap_peek(Heap *heap, uint8_t *success);
 
 uint8_t max_heap_insert(Heap *heap, const int val);
 uint8_t min_heap_insert(Heap *heap, const int val);
 
-uint8_t max_heap_remove(Heap *heap, int idx);
-uint8_t min_heap_remove(Heap *heap, int idx);
+//uint8_t max_heap_remove(Heap *heap, int idx);
+//uint8_t min_heap_remove(Heap *heap, int idx);
 
 
 #endif
