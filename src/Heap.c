@@ -45,7 +45,7 @@ max_heapify(arr, size, largest);
 void min_heapify(int *arr,const int size, const int idx){
 
 
-if(size < 2 || idx < 0) return;
+if(size < 2) return;
 
 
 int left = LEFT(idx);
@@ -254,12 +254,12 @@ else min_heapify(heap->arr, heap->heap_size, idx);
 
 void pqueue_heapify(PQueue *p, size_t idx){
 
-if(!p || idx > p->capacity) return;
+CHECK_PTR(p);
 
-int largest = idx;
+size_t largest = idx;
 
-int left = LEFT(idx);
-int right = RIGHT(idx);
+size_t left = LEFT(idx);
+size_t right = RIGHT(idx);
 
 if(left < p->size && p->compare_func(p->data[left], p->data[idx]) > 0) largest = left;
 
@@ -282,9 +282,10 @@ pqueue_heapify(p, largest);
 
 void *pqueue_dequeue(PQueue *p){
 
-if(!p) return NULL;
+CHECK_PTR(p);
 
 void *obj = p->data[0];
+CHECK_PTR(obj);
 p->data[0] = p->data[p->size - 1];
 p->size--;
 
@@ -297,9 +298,9 @@ return obj;
 
 void pqueue_enqueue(PQueue *p, const void *d2){
 
-if(!p) return;
+CHECK_PTR(p);
 
-p->data[p->size] = d2;
+p->data[p->size] = (void *) d2;
 p->size++;
 
 int idx = p->size - 1;
@@ -344,7 +345,7 @@ return new_queue;
 
 void pqueue_delete(PQueue *p){
 
-if(!p) return;
+CHECK_PTR(p);
 
 free(p->data);
 free(p);

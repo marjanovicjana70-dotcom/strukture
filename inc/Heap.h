@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <limits.h>
 #include <stdint.h>
+#include "all.h"
 
 typedef enum {
 
@@ -29,8 +30,8 @@ int heap_size;
 
 typedef struct priority_queue {
 
-int size;
-int capacity;
+size_t size;
+size_t capacity;
 void **data;
 int (*compare_func)(const void *d1, const void *d2);
 /*
